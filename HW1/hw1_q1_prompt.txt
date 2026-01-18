@@ -1,0 +1,12 @@
+Read the CSV file into a DataFrame.
+Store the first 5 rows of the DataFrame in a variable called answer_1.
+Store a list of column names of the DataFrame in a variable called answer_2.
+Store the shape of the DataFrame in a variable called answer_3.
+Store the number of unique values of each column in a variable called answer_4.
+
+Instructions:
+• Use the pandas library.
+• Dataset path: /autograder/source/drybean.csv
+• Submit prompt as: hw1
+• Don’t include any explanation, only provide the code.
+• Do not include “python” label.

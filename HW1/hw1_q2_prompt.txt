@@ -1,0 +1,17 @@
+Find missing value handling strategies: Dropping rows with missing values, Filling missing values with the median, Using K-Nearest Neighbor imputation.
+
+Task:
+1. Load the dataset from /autograder/source/housing.csv using pandas.
+2. Identify the first numeric column that contains missing values.
+3. Find the median of that column.
+4. Use KNNImputer (n_neighbors=10) only on numeric columns to fill missing values.
+5. Determine the imputed value at row index 291 (0-based index).
+6. Print a Python list: [column_name (string), median_value (float), imputed_value (float)].
+
+Requirements:
+- Use pandas, numpy, and scikit-learn.
+- Automatically detect the column with missing values.
+- Perform KNN imputation only on numeric columns (exclude object or string columns).
+- Be careful with data types.
+- Do not include explanations, comments, or print text other than the list.
+- Output only the code (no "python" label).
