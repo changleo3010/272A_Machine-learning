@@ -1,11 +1,14 @@
-# 272A_Machine-learning
-**Homework 1: Prompting LLMs for Code Generation**
+# 272A_Machine-learning  
+
+***Homework 1: Prompting LLMs for Code Generation***
+
   The purpose of this assignment is to familiarize you with the process of prompting a Large Language Model
 (LLM) for Python code generation. There are two goals that you want to achieve with this homework:
 • Data Exploration
 • Prompt Engineering
 
-Homework 2: Prompting LLMs for Machine Learning
+***Homework 2: Prompting LLMs for Machine Learning***
+
   The purpose of this assignment is to familiarize you with the process of building machine learning models
 by prompting a Large Language Model (LLM). This process is divided into three main parts:
 1. Data Exploration
@@ -14,7 +17,8 @@ by prompting a Large Language Model (LLM). This process is divided into three ma
 Homework 1wasspecifically about Data Exploration. In this homework, we will focus on Data Preprocessing,
 and Model Building and Evaluation. We will use the same two datasets.
 
-Homework 3: Wafer Map Failure Pattern
+***Homework 3: Wafer Map Failure Pattern***
+
   Homework 3 is slightly different from the previous assignments. In earlier assignments, your goal
 was to craft a single precise prompt. This time, however, your goal is to leverage an LLM to
 complete a long piece of code. Your task is to directly call your desired LLM from within the
@@ -26,11 +30,13 @@ The grading for this assignment will focus on two main criteria:
 1. Whether you successfully completed the code using the LLM effectively.
 2. What kinds of questions you asked the LLM during the process.
 
-Homwwork 4: Get a feel for using Cline and explore how to use it efficiently and effectively
+***Homwwork 4: Get a feel for using Cline and explore how to use it efficiently and effectively***
+
   Using Cline effectively makes it more powerful than using LLMs, we will perform some simple tasks using the Diabetes dataset, 
 which is a binary classification dataset
 
-Homework 5: Build The Best ML Model
+***Homework 5: Build The Best ML Model***
+
   This final homework will be a comprehensive assignment that integrates everything you have done
 in your previous homework assignments.
 In Homework 1 and 2, you learned how to build Machine Learning models using simple datasets.
