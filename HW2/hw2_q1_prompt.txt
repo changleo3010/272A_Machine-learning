@@ -1,0 +1,29 @@
+Use only pandas, numpy, and scikit-learn.
+Dataset path: /autograder/source/drybean.csv.
+Output only the Python code, no explanations or comments.
+Submit this entire prompt as hw2_q1_prompt.txt.
+
+Task:
+Train a DecisionTreeClassifier to predict 'Class' from the Dry Bean dataset following these exact steps:
+
+Load /autograder/source/drybean.csv using pandas.
+
+Apply np.log1p to 'Area'.
+
+Split the data into features X (all columns except 'Class') and target y ('Class').
+
+Split into train (60%), validation (20%), and test (20%) sets using
+
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.4, random_state=42)
+X_valid, X_test, y_valid, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
+
+
+Standardize all features with StandardScaler, fitted only on training data.
+
+Train a DecisionTreeClassifier(random_state=42) on the standardized training data.
+
+Compute accuracy on training, validation, and test sets.
+
+Print a dictionary with all three accuracies in this exact format:
+
+{'train': train_accuracy, 'valid': valid_accuracy, 'test': test_accuracy}

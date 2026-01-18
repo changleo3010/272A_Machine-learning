@@ -1,0 +1,73 @@
+Using the California Housing dataset, train a regression model to predict the median house value. 
+Split the data into training, validation, and test sets.
+
+Preprocessing requirements
+
+• Implement a custom transformer named NearestAnchorTransformer:
+  - For each row’s (latitude, longitude), compute Euclidean distances to three anchors:
+      (37.38, −122.21) — Bay Area
+      (33.99, −118.50) — Los Angeles
+      (32.82, −117.31) — San Diego
+  - Output a single feature equal to the distance to the nearest anchor (the minimum of the three distances).
+  - Inside transform(), use X = np.array(X) to support both DataFrames and NumPy arrays:
+        lat_lon = X[:, :2]
+        distances = np.sqrt(((lat_lon[:, None, :] - self.anchors[None, :, :]) ** 2).sum(axis=2))
+        nearest_distance = np.min(distances, axis=1)
+        return nearest_distance.reshape(-1, 1)
+  - The transform() output must have shape (n_samples, 1).
+  - Inherit from sklearn.base.BaseEstimator and TransformerMixin to ensure compatibility with sklearn pipelines.
+
+Preprocessing Pipeline
+
+Use a single end-to-end Pipeline containing a ColumnTransformer, fit only on the training split (to avoid data leakage).
+Each transformer inside the ColumnTransformer must be a 3-element tuple:
+('name', transformer_object, [list_of_columns])
+Set remainder='drop'.
+
+Apply the following transformations:
+
+Columns                                   Steps
+['latitude', 'longitude']                 NearestAnchorTransformer → StandardScaler
+['total_rooms', 'total_bedrooms', 
+ 'population', 'households', 
+ 'median_income']                         KNNImputer(n_neighbors=3) → FunctionTransformer(np.log1p, validate=False) → StandardScaler
+['housing_median_age']                    KNNImputer → StandardScaler
+['ocean_proximity']                       OneHotEncoder(handle_unknown='ignore')
+                                          (Use version check to support both old and new scikit-learn versions)
+
+To make the code compatible with both old and new scikit-learn versions:
+    import sklearn
+    from packaging import version
+    if version.parse(sklearn.__version__) >= version.parse("1.2"):
+        encoder = OneHotEncoder(handle_unknown='ignore', sparse_output=False)
+    else:
+        encoder = OneHotEncoder(handle_unknown='ignore', sparse=False)
+
+Then use:
+    ('ocean_proximity', encoder, ['ocean_proximity'])
+
+Modeling
+
+• Train and compare at least two regression models:
+    - LinearRegression
+    - KNeighborsRegressor
+• Evaluate using Mean Absolute Error (MAE) on train, validation, and test splits.
+• Print results only for the final model that performs best (KNeighborsRegressor).
+
+Output
+
+Print a Python dictionary with keys 'train', 'valid', and 'test', where each value is the MAE score (float).
+Example:
+{ 'train': 42132.28, 'valid': 44571.63, 'test': 46238.57 }
+
+Requirements
+
+• Use only pandas, numpy, and scikit-learn.
+• Dataset path: /autograder/source/housing.csv
+• Output only code (no markdown or explanations).
+• Submit this entire prompt as hw2_q2_prompt.txt.
+• Include: from sklearn.preprocessing import FunctionTransformer
+• Ensure all ColumnTransformer tuples have exactly 3 elements (including the column list).
+• Ensure 'ocean_proximity' is explicitly listed as ['ocean_proximity'].
+• The entire preprocessing + model must be a single end-to-end pipeline.
+• The script must run without modification in the autograder.
